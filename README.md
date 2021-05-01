@@ -4,13 +4,12 @@ A Lua library designed to monitor and log running parameters more easily. In par
 
 <!--List of methods and explanation -->
 # Documentation
-#### serialize(*table* t, *bool* es)
-Serialize a table **t** and return a string.
-Use the **es** parameter to remove escape characters, useful for transmissions (increase the character count).
-*Tables and arrays are supported, not mixed table.*
+## Logger class
+#### CreateLog(*string* name, *string* type)
+Create and register a Log object.
 
-#### deserialize(*string* s)
-Deserialize a serialized table as string **s** and return the table.
+#### getLogs()
+Returns an array of logs entry as string. See a example on the [How to use](#how-to-use) part.
 
 
 
