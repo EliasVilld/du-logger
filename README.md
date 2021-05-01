@@ -41,18 +41,20 @@ Returns the mean of the array of values. *Does nothing of the 'number' log type*
 # How to use
 To use this library in Dual Universe, you can simply copy the lua code and paste it into a Library slot (the two classes `log.lua` and `logger.lua` have been written here in two different files just for readability). It can be used to monitor the computation time of a part of your script like this example below:
 ```lua
---In your initialisation (commonly unit.start)
+--== In your initialisation (commonly unit.start)
 Logs = Logger()
 local _logCompute = Logs.CreateLog("Computation", "time")
 
---In your computation part
+
+--== In your computation part
 local t0 = system.getTime()
-...
-computations ...
-...
+--...
+--computations ...
+--...
 logCompute.addValue(system.getTime() - t0)
 
---In your rendering or printing  step
+
+--== In your rendering or printing part
 for _,s in pairs(Logs.getLogs()) do
   system.print(s)                               -> Computation: xx.xxxx ms
 end
