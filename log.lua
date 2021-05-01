@@ -13,7 +13,7 @@ function Log(name,ty)
 
     function self.getString()
         if self.Type == 'int' then
-            return self.value
+            return self.Value
         elseif self.Type == 'time' then
             return maths.round(self.getMean()*1000,4) .. 'ms'
         elseif self.Type == 'range' then
