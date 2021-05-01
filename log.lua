@@ -3,7 +3,6 @@ function Log(name,ty)
     self.Name = name or 'Log'
     self.Value = (ty == 'int' and 0) or {}
     self.Type = ty or 'int'
-    self.Id = 0
     
     if self.Type == 'range' then self.Value = {0,0} end
 
