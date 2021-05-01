@@ -1,3 +1,5 @@
+local utils = require 'cpml/utils'
+
 function Log(name,ty)
     local self={}
     self.Name = name or 'Log'
@@ -16,9 +18,9 @@ function Log(name,ty)
         if self.Type == 'number' then
             return tostring(self.Value)
         elseif self.Type == 'time' then
-            return maths.round(self.getMean()*1000,4) .. 'ms'
+            return utils.round(self.getMean()*1000,0.0001) .. 'ms'
         elseif self.Type == 'mean' then
-            return tostring(maths.round(self.getMean(),2));
+            return tostring(utils.round(self.getMean(),0.01));
         end
     end
     
