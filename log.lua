@@ -1,37 +1,38 @@
 function Log(name,ty)
     local self={}
     self.Name = name or 'Log'
-    self.Value = (ty == 'int' and 0) or {}
-    self.Type = ty or 'int'
-    
-    if self.Type == 'range' then self.Value = {0,0} end
+    self.Value = (ty == 'number' and 0) or {}
+    self.Type = ty or 'mean'
 
     function self.Update(v)
-        self.Value[#self.Value] = v
+        if self.Type == 'number' then
+            self.Value = v
+        else
+            self.Value[#self.Value] = v
+        end
     end
 
     function self.getString()
-        if self.Type == 'int' then
-            return self.Value
+        if self.Type == 'number' then
+            return tostring(self.Value)
         elseif self.Type == 'time' then
             return maths.round(self.getMean()*1000,4) .. 'ms'
-        elseif self.Type == 'range' then
-            return self.Value[1] .. '/' .. self.Value[2];
+        elseif self.Type == 'mean' then
+            return tostring(maths.round(self.getMean(),2));
         end
     end
     
     function self.getValue()
-        if self.Type == 'int' then
+        if self.Type == 'number' then
             return self.value
-        elseif self.Type == 'time' then
+        else
             return self.getMean()
-        elseif self.Type == 'range' then
-            return self.Value[1];
         end
     end
         
     function self.addValue(v)
-        if type(self.Value) ~= 'table' then self.Value = {} end
+        if self.Type == 'number' then return end
+        
         table.insert(self.Value,1,v)
         if #self.Value > 200 then self.Value[201] = nil end
     end
