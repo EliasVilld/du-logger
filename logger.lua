@@ -4,8 +4,7 @@ function Logger()
 
     function self.CreateLog(name,type)
         local log = Log(name,type)
-        local id = Register(log)
-        log.Id = id;
+        Register(log)
         return log;
     end
     
@@ -19,7 +18,6 @@ function Logger()
     
     function Register(log)
         self.Logs[#self.Logs+1] = log;
-        return #self.Logs
     end
     return self
 end
